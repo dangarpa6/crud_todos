@@ -7,6 +7,11 @@ require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 
 
+sequelize.authenticate()
+.then(()=> console.log("Base de datos conectada"))
+.catch((err) => console.log(err));
+
+
 
 
 sequelize.sync()
