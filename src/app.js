@@ -27,6 +27,10 @@ app.use(cors());
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+res.send("servidor fundionando")
+});
+
 // obtener todas las tareas
 
 app.get('/api/v1/todos', async(req, res) => {
