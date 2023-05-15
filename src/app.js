@@ -2,14 +2,17 @@ const express = require('express');
 const { Op } = require('sequelize');
 const Todo = require('./models/Todo');
 const sequelize = require('./utils/database');
+require('dotenv').config();
 
-const app = express();
+const PORT = process.env.PORT || 4000;
 
 sequelize.sync()
 .then(() => {
     console.log("Base de datos sincronazada");
 })
 .catch((error) => console.log(error));
+
+const app = express();
 
 app.use(express.json());
 
@@ -94,7 +97,7 @@ app.delete('/api/v1/todos/:id', async (req, res) => {
 
 });
 
-const PORT = 4000;
+
 
 app.listen(PORT, () => {
     console.log(`Servidor en escucha en el puerto ${PORT}`);
