@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 4000;
 
 
 sequelize.authenticate()
-.then(()=> console.log("Base de datos conectada"))
+.then(()=> console.log("Database conected"))
 .catch((err) => console.log(err));
 
 
@@ -17,7 +17,7 @@ sequelize.authenticate()
 
 sequelize.sync()
 .then(() => {
-    console.log("Base de datos sincronazada");
+    console.log("Database synchronized");
 })
 .catch((error) => console.log(error));
 
@@ -28,21 +28,21 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-res.send("servidor fundionando")
+res.send("server working")
 });
 
-// obtener todas las tareas
+// Get all the tasks
 
 app.get('/api/v1/todos', async(req, res) => {
     try {
         const todos = await Todo.findAll();
         res.json(todos);
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener la tarea' });
+        res.status(500).json({ error: 'Error by getting the tasks' });
     }
 });
 
-// obtener una tarea por su id 
+// Get all the tasks by ID 
 
 app.get('/api/v1/todos/:id', async(req, res) => {
     const { id } = req.params;
@@ -50,15 +50,15 @@ app.get('/api/v1/todos/:id', async(req, res) => {
     try {
         const todos = await Todo.findByPk(id);
         if (!todos) {
-            return res.status(404).json({error: 'Tarea no encontrada'});
+            return res.status(404).json({error: 'Tasks not found'});
         }
         res.json(todos);
     } catch (error) {
-        res.status(500).json({error: 'Error al obtener la tarea'});
+        res.status(500).json({error: 'Error getting the tasks'});
     }
 });
 
-// crear la tarea
+// Create new tasks
 
 app.post('/api/v1/todos', async (req, res) => {
     const { title, description } = req.body;
@@ -68,11 +68,11 @@ app.post('/api/v1/todos', async (req, res) => {
         const todo = await Todo.create({ title, description });
         res.status(201).json(todo);
     } catch (error) {
-        res.status(500).json({error: 'Error al crear la tarea'});
+        res.status(500).json({error: 'Error creating tasks'});
     }
 });
 
-// actualizar la tarea
+// Updated tasks
 
 app.put('/api/v1/todos/:id', async (req, res) => {
     const { id } = req.params;
@@ -85,16 +85,16 @@ app.put('/api/v1/todos/:id', async (req, res) => {
         );
 
         if (updatedTodo[0] === 0) {
-            return res.status(404).json({error: "Tarea no encontrada"});
+            return res.status(404).json({error: "Tasks not found"});
         }
 
         res.json(updatedTodo[1][0]);
     } catch (error) {
-        res.status(500).json({error: "Error al actualizar la tarea"});
+        res.status(500).json({error: "Error updtating tasks"});
     }
 }) 
 
-// eliminar la tarea
+// Delete tasks
 
 app.delete('/api/v1/todos/:id', async (req, res) => {
     const { id } = req.params;
@@ -102,12 +102,12 @@ app.delete('/api/v1/todos/:id', async (req, res) => {
         const deletedTodo = await Todo.destroy({where: { id }});
 
         if (deletedTodo === 0) {
-            return res.status(404).json({error: "Error, tarea no encontrada."})
+            return res.status(404).json({error: "Error task not found."})
         }
 
         res.sendStatus(204);
     } catch (error) {
-        res.status(500).json({error: "Error al eliminar la tarea"});
+        res.status(500).json({error: "Error deleting tasks"});
     }
 
 });
@@ -115,5 +115,5 @@ app.delete('/api/v1/todos/:id', async (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Servidor en escucha en el puerto ${PORT}`);
+    console.log(`Server listening port ${PORT}`);
 })
