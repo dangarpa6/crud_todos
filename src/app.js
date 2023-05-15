@@ -2,6 +2,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const Todo = require('./models/Todo');
 const sequelize = require('./utils/database');
+const cors = require('cors')
 require('dotenv').config();
 
 const PORT = process.env.PORT || 4000;
@@ -22,6 +23,7 @@ sequelize.sync()
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 // obtener todas las tareas
