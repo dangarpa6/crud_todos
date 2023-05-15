@@ -19,7 +19,7 @@ const Todo = sequelize.define('Todo', {
     completed: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+        defaultValue: false
     }
 });
 

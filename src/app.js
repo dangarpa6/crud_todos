@@ -24,6 +24,7 @@ sequelize.sync()
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
 
 // obtener todas las tareas

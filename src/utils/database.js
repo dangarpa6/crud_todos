@@ -14,4 +14,4 @@ const sequelize = new Sequelize({
 
 module.exports = sequelize;
 
-// postgres://todos_app_user:fvMHNATqLAmA3DDsQynrsagiv9YXVYuP@dpg-chgn9lbhp8u065oj394g-a.oregon-postgres.render.com/todos_app
+// postgres://todos_app_user:fvMHNATqLAmA3DDsQynrsagiv9YXVYuP@dpg-chgn9lbhp8u065oj394g-a.oregon-postgres.render.com/todos_app 
