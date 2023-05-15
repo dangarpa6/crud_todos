@@ -6,6 +6,9 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 4000;
 
+
+
+
 sequelize.sync()
 .then(() => {
     console.log("Base de datos sincronazada");
